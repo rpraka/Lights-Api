@@ -60,4 +60,4 @@ def index():
 # cursor.close()
 # conn.close()
 if __name__ == '__main__':
-    app.run(port=5000, workers=2, debug=False)
+    app.run(port=5000, workers=3, debug=False)
