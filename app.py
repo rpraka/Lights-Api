@@ -29,6 +29,9 @@ def respond():
     # Retrieve the name from url parameter
     name = request.args.get("new_status", None)
 
+    cursor.execute(""" INSERT INTO light_meta (id, state) values (1,%d); """)
+    conn.commit()
+
     print(f"got new_status {name}")
     
     cursor.execute("SELECT * FROM light_meta;")
@@ -52,4 +55,4 @@ def index():
 # conn.close()
 if __name__ == '__main__':
 
-    app.run(port=5000, workers=2, debug=True)
+    app.run(port=5000, workers=2, debug=False)
