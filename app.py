@@ -28,7 +28,7 @@ print(f"table made {current_status}")
 def respond():
     # Retrieve the name from url parameter
     new_status = request.args.get("new_status", None)
-    cursor.execute("UPDATE light_meta SET status = %s WHERE id = 1", (new_status, ))
+    cursor.execute("UPDATE  light_meta SET status = %s WHERE id = 1", (new_status, ))
     conn.commit()
 
     print(f"got new_status {new_status}")
