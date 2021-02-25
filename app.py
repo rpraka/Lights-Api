@@ -16,7 +16,7 @@ cursor.execute(""" CREATE TABLE IF NOT EXISTS light_meta (
     """)
 
 conn.commit()
-cursor.execute(""" INSERT INTO light_meta (id, state) VALUES (1,0);""")
+cursor.execute(""" INSERT INTO light_meta (id, state) VALUES (1,0) ;""")
 conn.commit()
 
 print("table made")
