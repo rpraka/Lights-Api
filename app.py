@@ -30,12 +30,14 @@ def set_status():
     except:
         cursor.execute("ROLLBACK")
         conn.commit()
-        print("ROOOOOLLLLBACCKKKK")
+        print("ROLLBACK")
     cursor.execute("SELECT * FROM light_meta;")
     current_status = cursor.fetchone()
 
     response = {}
-    response["message"] = f"Got new status {new_status}, current: {current_status}!!"
+    response["message"] = f"Got new status {new_status}, current: {current_status}"
+
+    response["code"] = new_status == current_status
     
     return jsonify(response)
 
