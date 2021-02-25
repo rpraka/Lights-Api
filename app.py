@@ -36,9 +36,6 @@ def set_status():
 
     response = {}
     response["message"] = f"Got new status {new_status}, current: {current_status}"
-    print("types")
-    print(type(new_status))
-    print(type(current_status))
     response["code"] = (new_status == current_status)
     
     return jsonify(response)
@@ -47,7 +44,7 @@ def set_status():
 def get_status():
     # Retrieve the name from url parameter
     cursor.execute("SELECT * FROM light_meta;")
-    current_status = cursor.fetchone()
+    current_status = cursor.fetchone()[1]
 
     response = {}
     response["current_status"] = current_status
