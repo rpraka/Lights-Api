@@ -36,8 +36,10 @@ def set_status():
 
     response = {}
     response["message"] = f"Got new status {new_status}, current: {current_status}"
-
-    response["code"] = new_status == current_status
+    print("types")
+    print(type(new_status))
+    print(type(current_status))
+    response["code"] = (new_status == current_status)
     
     return jsonify(response)
 
