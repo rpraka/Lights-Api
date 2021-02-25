@@ -32,7 +32,7 @@ def set_status():
         conn.commit()
         print("ROLLBACK")
     cursor.execute("SELECT * FROM light_meta;")
-    current_status = cursor.fetchone()[0]
+    current_status = cursor.fetchone()[1]
 
     response = {}
     response["message"] = f"Got new status {new_status}, current: {current_status}"
