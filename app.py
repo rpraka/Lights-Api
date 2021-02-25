@@ -19,24 +19,16 @@ conn.commit()
 cursor.execute(""" INSERT INTO light_meta (id, state) values (1,0); """)
 conn.commit()
 cursor.execute("SELECT * FROM light_meta;")
-current_status = cursor.fetchone()
+current_status = cursor.fetchall()
 
-q = """                              
-SELECT column_name, data_type, is_nullable
-FROM information_schema.columns
-WHERE table_name = light_meta;
-"""
 print(f"table made {current_status}")
-
-cursor.execute(q)
-print(f"fetchall: {cursor.fetchall()}")
 
 
 @app.route('/getmsg/', methods=['GET'])
 def respond():
     # Retrieve the name from url parameter
     new_status = request.args.get("new_status", None)
-    cursor.execute("UPDATE  light_meta SET status = %s WHERE id = 1", (new_status, ))
+    cursor.execute("UPDATE light_meta SET status = %s WHERE id = 1", (new_status, ))
     conn.commit()
 
     print(f"got new_status {new_status}")
