@@ -18,30 +18,31 @@ cursor.execute(""" CREATE TABLE IF NOT EXISTS light_meta (
 conn.commit()
 cursor.execute(""" INSERT INTO light_meta (id, status) values (1,0); """)
 conn.commit()
-cursor.execute("SELECT * FROM light_meta;")
-current_status = cursor.fetchall()
-
-print(f"table made {current_status}")
 
 
-@app.route('/getmsg/', methods=['GET'])
+@app.route('/set_status/', methods=['POST'])
 def respond():
     # Retrieve the name from url parameter
     new_status = request.args.get("new_status", None)
     cursor.execute("UPDATE light_meta SET status = %s WHERE id = 1", (new_status, ))
     conn.commit()
-
-    print(f"got new_status {new_status}")
-    
     cursor.execute("SELECT * FROM light_meta;")
-
     current_status = cursor.fetchone()
 
     response = {}
-   
     response["message"] = f"Got new status {new_status}, current: {current_status}!!"
+    
+    return jsonify(response)
 
-    # Return the response in json format
+@app.route('/get_status/', methods=['GET'])
+def respond():
+    # Retrieve the name from url parameter
+    cursor.execute("SELECT * FROM light_meta;")
+    current_status = cursor.fetchone()
+
+    response = {}
+    response["current_status"] = current_status
+    
     return jsonify(response)
 
 
@@ -53,5 +54,4 @@ def index():
 # cursor.close()
 # conn.close()
 if __name__ == '__main__':
-
     app.run(port=5000, workers=2, debug=False)
