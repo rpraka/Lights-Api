@@ -13,6 +13,10 @@ cursor.execute(""" CREATE TABLE IF NOT EXISTS light_meta (
     id SERIAL,
     state integer NOT NULL DEFAULT 0
     );""")
+
+conn.commit()
+cursor.close()
+conn.close()
 print("table made")
 
 
