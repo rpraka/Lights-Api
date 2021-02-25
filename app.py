@@ -27,12 +27,12 @@ print(f"table made {current_status}")
 @app.route('/getmsg/', methods=['GET'])
 def respond():
     # Retrieve the name from url parameter
-    name = request.args.get("new_status", None)
+    new_status = request.args.get("new_status", None)
 
-    cursor.execute(""" INSERT INTO light_meta (id, state) values (1,%d); """)
+    cursor.execute(""" INSERT INTO light_meta (id, state) values (1,%d);""",(new_status,))
     conn.commit()
 
-    print(f"got new_status {name}")
+    print(f"got new_status {new_status}")
     
     cursor.execute("SELECT * FROM light_meta;")
 
@@ -40,7 +40,7 @@ def respond():
 
     response = {}
    
-    response["message"] = f"Got new status {name}, current: {current_status}!!"
+    response["message"] = f"Got new status {new_status}, current: {current_status}!!"
 
     # Return the response in json format
     return jsonify(response)
