@@ -2,6 +2,8 @@ from flask import Flask, request, jsonify
 import os
 import psycopg2
 
+app = Flask(__name__)
+
 DATABASE_URL = os.environ['DATABASE_URL']
 
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
@@ -12,7 +14,8 @@ cursor.execute(""" CREATE TABLE IF NOT EXISTS light_meta (
     state integer NOT NULL DEFAULT 0
     );""")
 print("table made")
-app = Flask(__name__)
+
+
 
 @app.route('/getmsg/', methods=['GET'])
 def respond():
@@ -44,5 +47,6 @@ def index():
     return "<h1>Welcome to our server !!</h1>"
 
 if __name__ == '__main__':
-    # Threaded option to enable multiple instances for multiple user access support
-    app.run(port=5000, workers=2, debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    # app.run(port=5000, workers=2, debug=True)
+    app.run(host='0.0.0.0', port=port)
