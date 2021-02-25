@@ -13,7 +13,7 @@ cursor.execute(""" CREATE TABLE IF NOT EXISTS light_meta (
     id integer,
     state integer NOT NULL
     );
-    INSERT INTO light_meta VALUES (1,0) ON CONFLICT UPDATE;
+    INSERT INTO light_meta (id, state) VALUES (1,0) ON CONFLICT UPDATE;
     """)
 
 conn.commit()
