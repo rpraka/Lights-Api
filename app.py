@@ -20,8 +20,16 @@ cursor.execute(""" INSERT INTO light_meta (id, state) values (1,0); """)
 conn.commit()
 cursor.execute("SELECT * FROM light_meta;")
 current_status = cursor.fetchone()
+
+q = """                              
+SELECT column_name, data_type, is_nullable
+FROM information_schema.columns
+WHERE table_name = light_meta;
+"""
 print(f"table made {current_status}")
 
+cursor.execute(q)
+print(f"fetchall: {cursor.fetchall()}")
 
 
 @app.route('/getmsg/', methods=['GET'])
