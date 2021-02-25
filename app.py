@@ -10,9 +10,11 @@ conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 cursor = conn.cursor()
 
 cursor.execute(""" CREATE TABLE IF NOT EXISTS light_meta (
-    id SERIAL,
-    state integer NOT NULL DEFAULT 0
-    );""")
+    id integer,
+    state integer NOT NULL
+    );
+    INSERT INTO light_meta VALUES (1,0) ON CONFLICT UPDATE
+    """)
 
 conn.commit()
 
@@ -30,7 +32,7 @@ def respond():
     
     cursor.execute("SELECT * FROM light_meta;")
 
-    current_status = cursor.fetchone()[1]
+    current_status = cursor.fetchone()
 
     response = {}
    
