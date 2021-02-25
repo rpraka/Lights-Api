@@ -5,7 +5,13 @@ import psycopg2
 DATABASE_URL = os.environ['DATABASE_URL']
 
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+cursor = conn.cursor()
 
+cursor.execute(""" CREATE TABLE IF NOT EXISTS light_meta (
+    id SERIAL,
+    state integer NOT NULL DEFAULT 0
+    );""")
+print("table made")
 app = Flask(__name__)
 
 @app.route('/getmsg/', methods=['GET'])
