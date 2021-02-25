@@ -10,7 +10,7 @@ conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 cursor = conn.cursor()
 
 cursor.execute(""" CREATE TABLE IF NOT EXISTS light_meta (
-    id integer,
+    id integer,  
     status integer NOT NULL
     );
     """)
