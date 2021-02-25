@@ -21,7 +21,7 @@ conn.commit()
 
 
 @app.route('/set_status/', methods=['POST'])
-def respond():
+def set_status():
     # Retrieve the name from url parameter
     new_status = request.args.get("new_status", None)
     cursor.execute("UPDATE light_meta SET status = %s WHERE id = 1", (new_status, ))
@@ -35,7 +35,7 @@ def respond():
     return jsonify(response)
 
 @app.route('/get_status/', methods=['GET'])
-def respond():
+def get_status():
     # Retrieve the name from url parameter
     cursor.execute("SELECT * FROM light_meta;")
     current_status = cursor.fetchone()
