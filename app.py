@@ -23,7 +23,7 @@ conn.commit()
 @app.route('/set_status/', methods=['POST'])
 def set_status():
     # Retrieve the name from url parameter
-    new_status = request.args.get("new_status", None)
+    new_status = int(request.args.get("new_status", None))
     try:
         cursor.execute("UPDATE light_meta SET status = %s WHERE id = 1", (new_status, ))
         conn.commit()
@@ -32,7 +32,7 @@ def set_status():
         conn.commit()
         print("ROLLBACK")
     cursor.execute("SELECT * FROM light_meta;")
-    current_status = cursor.fetchone()
+    current_status = cursor.fetchone()[0]
 
     response = {}
     response["message"] = f"Got new status {new_status}, current: {current_status}"
