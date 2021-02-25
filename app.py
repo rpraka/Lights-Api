@@ -29,7 +29,7 @@ def respond():
     # Retrieve the name from url parameter
     new_status = request.args.get("new_status", None)
 
-    cursor.execute(""" INSERT INTO light_meta (id, state) values (1,%d);""",(new_status,))
+    cursor.execute(f""" INSERT INTO light_meta (id, state) values (1,{new_status});""")
     conn.commit()
 
     print(f"got new_status {new_status}")
