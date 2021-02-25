@@ -24,8 +24,13 @@ conn.commit()
 def set_status():
     # Retrieve the name from url parameter
     new_status = request.args.get("new_status", None)
-    cursor.execute("UPDATE light_meta SET status = %s WHERE id = 1", (new_status, ))
-    conn.commit()
+    try:
+        cursor.execute("UPDATE light_meta SET status = %s WHERE id = 1", (new_status, ))
+        conn.commit()
+    except:
+        cursor.execute("ROLLBACK")
+        conn.commit()
+        print("ROOOOOLLLLBACCKKKK")
     cursor.execute("SELECT * FROM light_meta;")
     current_status = cursor.fetchone()
 
