@@ -11,7 +11,7 @@ cursor = conn.cursor()
 
 cursor.execute(""" CREATE TABLE IF NOT EXISTS light_meta (
     id integer,
-    state integer NOT NULL
+    status integer NOT NULL
     );
     """)
 
