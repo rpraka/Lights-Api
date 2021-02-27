@@ -20,34 +20,50 @@ cursor.execute(""" INSERT INTO light_meta (id, status) values (1,0); """)
 conn.commit()
 
 
-@app.route('/set_status/', methods=['POST'])
-def set_status():
-    # Retrieve the name from url parameter
-    new_status = int(request.args.get("new_status", None))
-    try:
-        cursor.execute("UPDATE light_meta SET status = %s WHERE id = 1", (new_status, ))
-        conn.commit()
-    except:
-        cursor.execute("ROLLBACK")
-        conn.commit()
-        print("ROLLBACK")
-    cursor.execute("SELECT * FROM light_meta;")
-    current_status = cursor.fetchone()[1]
-
+@app.route('/status/', methods=['GET', 'POST'])
+def status():
     response = {}
-    response["message"] = f"Got new status {new_status}, current: {current_status}"
-    response["code"] = (new_status == current_status)
-    
+    # Retrieve the name from url parameter
+    if flask.request.method == 'POST':
+        new_status = int(request.args.get("new_status", None))
+        id  = request.args.get('id', None)
+
+        if id is None:
+            request['message'] = "[ERROR] No id was passed."
+            response["code"] = False
+        elif new_status is None:
+            request['message'] = "[ERROR] No new status was passed."
+            response["code"] = False
+        else:
+            try:
+                cursor.execute("UPDATE light_meta SET status = %s WHERE id = %s", (new_status, id))
+                conn.commit()
+            except:
+                cursor.execute("ROLLBACK")
+                conn.commit()
+                print("ROLLBACK")
+            cursor.execute("SELECT * FROM light_meta;")
+            current_status = cursor.fetchone()[1]
+
+            
+            response["message"] = f"Got new status {new_status}, current: {current_status}"
+            response["code"] = (new_status == current_status)
+        
     return jsonify(response)
 
 @app.route('/get_status/', methods=['GET'])
 def get_status():
     # Retrieve the name from url parameter
-    cursor.execute("SELECT * FROM light_meta;")
-    current_status = cursor.fetchone()[1]
-
     response = {}
-    response["current_status"] = current_status
+    id  = request.args.get('id', None)
+    if id is None:
+            request['message'] = "[ERROR] No id was passed."
+    else:
+        cursor.execute("SELECT * FROM light_meta WHERE id=%s;", (id,))
+        current_status = cursor.fetchone()[1]
+
+   
+        response["current_status"] = current_status
     
     return jsonify(response)
 
