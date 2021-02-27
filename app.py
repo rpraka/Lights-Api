@@ -29,7 +29,7 @@ def status():
         id  = request.args.get('id', None)
 
         if id is None:
-            request['message'] = "[ERROR] No id was passed."
+            response['message'] = "[ERROR] No id was passed."
             response["code"] = False
         elif new_status is None:
             request['message'] = "[ERROR] No new status was passed."
@@ -57,7 +57,7 @@ def get_status():
     response = {}
     id  = request.args.get('id', None)
     if id is None:
-            request['message'] = "[ERROR] No id was passed."
+            response['message'] = "[ERROR] No id was passed."
     else:
         cursor.execute("SELECT * FROM light_meta WHERE id=%s;", (id,))
         current_status = cursor.fetchone()[1]
