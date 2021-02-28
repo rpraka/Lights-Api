@@ -16,7 +16,8 @@ cursor.execute(""" CREATE TABLE IF NOT EXISTS light_meta (
     """)
 
 conn.commit()
-cursor.execute(""" INSERT INTO light_meta (id, status) values (1,0); """)
+cursor.execute(""" INSERT INTO light_meta (id, status) values (1,-1); """)
+cursor.execute(""" INSERT INTO light_meta (id, status) values (2,-1); """)
 conn.commit()
 
 
