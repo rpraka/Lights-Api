@@ -1,1 +1,0 @@
-auth_keys = {"1":"123XPHIWP","2":"023PAWOAS"} #6 char auth, no special chars
