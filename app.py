@@ -9,7 +9,6 @@ conn, cursor = setup_db()
 @app.route('/set_status/', methods=['POST'])
 def status():
     response = {'message':''}
-    # Retrieve the name from url parameter
     new_status = int(request.args.get("new_status", None))
     id  = request.args.get('id', None)
     auth_key  = request.args.get('auth_key', None)
