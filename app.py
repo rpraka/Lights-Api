@@ -33,7 +33,7 @@ def status():
         cursor.execute("SELECT * FROM light_meta;")
         current_status = cursor.fetchone()[1]
 
-        response["message"] = f"Got new status {new_status}, current: {current_status}"
+        response["message"] += f"Got new status {new_status}, current: {current_status}"
         response["code"] = (new_status == current_status)
     
     else:
