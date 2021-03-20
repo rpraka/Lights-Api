@@ -14,14 +14,16 @@ def status():
     id  = request.args.get('id', None)
     auth_key  = request.args.get('auth_key', None)
 
-    if not id:
+    if id is None:
         response['message'] += "[ERROR] No id was passed."
         response["code"] = False
-    if not new_status:
-        request['message'] += "[ERROR] No new status was passed."
+        return jsonify(response)
+    if new_status is None:
+        response['message'] += "[ERROR] No new status was passed."
         response["code"] = False
+        return jsonify(response)
     
-    if (id and new_status and (auth_key == auth_keys.get(id, None))):
+    if (auth_key == auth_keys.get(id, None)):
         response['message'] += "[AUTH] auth valid."
         try:
             cursor.execute("UPDATE light_meta SET status = %s WHERE id = %s", (new_status, id))
