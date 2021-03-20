@@ -28,15 +28,18 @@ def status():
         try:
             cursor.execute("UPDATE light_meta SET status = %s WHERE id = %s", (new_status, id))
             conn.commit()
+            response["code"] = True
         except:
             cursor.execute("ROLLBACK")
             conn.commit()
             print("ROLLBACK")
+            response['message'] += "[ERROR] Database rollback"
+            response["code"] = False
+
         cursor.execute("SELECT * FROM light_meta;")
         current_status = cursor.fetchone()[1]
 
         response["message"] += f"Got new status {new_status}, current: {current_status}"
-        response["code"] = (new_status == current_status)
     
     else:
         response['message'] += "[ERROR] invalid auth."
