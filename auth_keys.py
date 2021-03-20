@@ -1,0 +1,1 @@
+auth_keys = {"1":"123123123","2":"293012302"} #6 digit random auth
