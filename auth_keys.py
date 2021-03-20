@@ -1,1 +1,1 @@
-auth_keys = {"1":"123123123","2":"293012302"} #6 digit random auth
+auth_keys = {"1":"123&XHIWP","2":"293012302"} #6 char auth
