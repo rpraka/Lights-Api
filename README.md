@@ -21,8 +21,6 @@
 
 This project provides a simple REST API server and multiple REST client implementations for IoT light system control. Such an architecture uniquely allows a huge diversity for the type of clients allowed. The endpoints can be manipulated via Siri shortcuts, Google Home, Alexa, Chrome extensions and command line, among others.
 
----------ADD DIAGRAM HERE---------
-
 ### Built With
 
 * **PostgreSQL** - backend database
@@ -31,6 +29,8 @@ This project provides a simple REST API server and multiple REST client implemen
 * **NodeMCU ESP8266 WiFi SoC** - hardware implementation for servo control
 * **C++** - ESP8266 client implementation
 * **Javascript** - Chrome extension client implementation
+
+---------ADD DIAGRAM HERE---------
 
 
 <!-- GETTING STARTED -->
@@ -47,8 +47,14 @@ The hardware implementation requires a servo motor with least 2.5 kg-cm torque a
    ```sh
    git clone https://github.com/rpraka/lightsapi.git
    ```
-2. Reserve a Heroku dyno or any other VPS instance. Deployment is easiest with Heroku as all required files have been provided. Attach a postgreSQL instance to the instance and deploy the repo.
-
+2. Reserve a Heroku dyno or any other VPS instance. Deployment is easiest with Heroku as all required files have been provided. Attach a postgreSQL instance to the instance.
+3. Set the following parameters in the code as desired:
+   1. WIFI SSID and password
+   2. Device ids and authkeys
+   3. Base url endpoint of the VPS server
+4. Deploy the server code to the VPS
+5. Install hardware implementation
+6. Deploy your choice of client implementations
 
 <!-- USAGE EXAMPLES -->
 ## Usage
@@ -62,7 +68,7 @@ The hardware implementation requires a servo motor with least 2.5 kg-cm torque a
 * Integrate a photoresistor into the hardware implementation to allow toggling via a single endpoint.
 * Could add more advanced auth features, but is likely just uneccessary overhead in this case.
 * Considered websocket rather than REST, but probably is overkill.
-* 
+
 <!-- CONTRIBUTING -->
 ## Contributing
 
@@ -79,16 +85,6 @@ Any contributions are greatly appreciated.
 ## License
 
 Distributed under the MIT License.
-
-
-
-<!-- CONTACT -->
-## Contact
-
-Rahul Prakash - [@rpraka](https://twitter.com/rpraka)
-
-Project Link: [https://github.com/rpraka/lightsapi](https://github.com/rpraka/lightsapi)
-
 
 
 <!-- ACKNOWLEDGEMENTS -->
