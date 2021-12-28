@@ -30,7 +30,6 @@ This project provides a simple REST API server and multiple REST client implemen
 * **C++** - ESP8266 client implementation
 * **Javascript** - Chrome extension client implementation
 
----------ADD DIAGRAM HERE---------
 
 
 <!-- GETTING STARTED -->
