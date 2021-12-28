@@ -64,9 +64,8 @@ The hardware implementation requires a servo motor with least 2.5 kg-cm torque a
 <!-- ROADMAP -->
 ## Roadmap
 ### Upgrades
-* Integrate a photoresistor into the hardware implementation to allow toggling via a single endpoint.
 * Could add more advanced auth features, but is likely just uneccessary overhead in this case.
-* Considered websocket rather than REST, but probably is overkill for an ESP8266. MQTT might be a better choice.
+* Considered websocket rather than REST, but probably is overkill for an ESP8266. MQTT might be a better choice, but is harder to interface with commercial smart home devices.
 
 <!-- CONTRIBUTING -->
 ## Contributing
