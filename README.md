@@ -19,7 +19,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This project provides a simple REST API server and multiple REST client implementations for IoT light system control. Compared to websockets or MQTT, such an architecture uniquely allows **huge diversity for the type of clients allowed**. The endpoints can be manipulated via Siri shortcuts, Google Home, Alexa, Chrome extensions and command line, among others.
+This project provides a simple REST API server and multiple REST client implementations for IoT light system control. Compared to websockets or MQTT, such an architecture uniquely allows **huge diversity for the type of clients allowed**. The endpoints can be manipulated via **Siri shortcuts, Google Home, Alexa, Chrome extensions and command line**, among others.
 
 ### Built With
 
