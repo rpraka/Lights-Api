@@ -46,7 +46,7 @@ The hardware implementation requires a servo motor with least 2.5 kg-cm torque a
    ```sh
    git clone https://github.com/rpraka/lightsapi.git
    ```
-2. Reserve a Heroku dyno or any other VPS instance. Deployment is easiest with Heroku as all required files have been provided. Attach a postgreSQL instance to the instance.
+2. Reserve a Heroku dyno or any other VPS instance. Deployment is easiest with Heroku as all required files have been provided. Attach a postgreSQL instance.
 3. Set the following parameters in the code as desired:
    1. WIFI SSID and password
    2. Device ids and authkeys
