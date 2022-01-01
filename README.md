@@ -53,7 +53,7 @@ The hardware implementation requires a servo motor with least 2.5 kg-cm torque a
    3. Base url endpoint of the VPS server
 4. Deploy the server code to the VPS
 5. Install hardware implementation
-6. Deploy your choice of client implementations
+6. Enable your choice of client implementations
 
 <!-- USAGE EXAMPLES -->
 ## Usage
