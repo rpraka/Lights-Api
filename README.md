@@ -8,8 +8,6 @@
   <h3 align="center">An extensible API for custom IoT light systems.</h3>
 
   <p align="center">
-    <a href="https://github.com/rpraka/lightsapi">View Demo</a>
-    ·
     <a href="https://github.com/rpraka/lightsapi/issues">Report Bug</a>
     ·
     <a href="https://github.com/rpraka/lightsapi/issues">Request Feature</a>
